@@ -2,3 +2,5 @@
 @import "flowbite-react/plugin/tailwindcss";
 @source "../../.flowbite-react/class-list.json";
 
+/* dark theme toggle  */
+@custom-variant dark (&:where(.dark, .dark *));

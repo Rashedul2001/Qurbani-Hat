@@ -1,7 +1,10 @@
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
+import { ThemeModeScript } from "flowbite-react";
+
+
 const inter = Inter({
-  weight: ["400", "600", "700","900"],
+  weight: ["400", "600", "700", "900"],
   fallback: ["Geist", "Sans-serif"],
   style: "normal"
 });
@@ -15,12 +18,22 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html
+      suppressHydrationWarning
       lang="en"
       className={`${inter.className} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <head>
+        <ThemeModeScript/>
+      </head>
+
+      <body className="min-h-full flex flex-col bg-white dark:bg-black">
+
+
         {children}
+
+
       </body>
+
     </html>
   );
 }
