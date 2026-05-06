@@ -1,12 +1,15 @@
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeModeScript } from "flowbite-react";
+import NavbarComponent from "@/components/Navbar/Navbar";
+import { FooterComponent } from "@/components/Footer/Footer";
 
 
 const inter = Inter({
   weight: ["400", "600", "700", "900"],
   fallback: ["Geist", "Sans-serif"],
-  style: "normal"
+  style: "normal",
+  subsets: ["latin"]
 });
 
 
@@ -23,13 +26,15 @@ export default function RootLayout({ children }) {
       className={`${inter.className} h-full antialiased`}
     >
       <head>
-        <ThemeModeScript/>
+        <ThemeModeScript />
+        <link rel="icon" href="/logo.png" />
       </head>
 
       <body className="min-h-full flex flex-col bg-white dark:bg-black">
 
-
+        <NavbarComponent />
         {children}
+        <FooterComponent/>
 
 
       </body>
