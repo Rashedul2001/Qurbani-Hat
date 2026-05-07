@@ -1,9 +1,10 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeModeScript } from "flowbite-react";
-import NavbarComponent from "@/components/Navbar/Navbar";
-import { FooterComponent } from "@/components/Footer/Footer";
-import 'animate.css'
+import NavbarComponent from "@/components/shared/Navbar";
+import { FooterComponent } from "@/components/shared/Footer";
+import 'animate.css';
+// import { ThemeModeScript } from "flowbite-react";
 
 
 const inter = Inter({
@@ -27,7 +28,7 @@ export default function RootLayout({ children }) {
       className={`${inter.className} h-full antialiased bg-background `}
     >
       <head>
-        <ThemeModeScript />
+        <ThemeModeScript/>
         <link rel="icon" href="/logo.png" />
       </head>
 
