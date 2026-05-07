@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono, Inter } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeModeScript } from "flowbite-react";
 import NavbarComponent from "@/components/Navbar/Navbar";
@@ -15,8 +15,8 @@ const inter = Inter({
 
 
 export const metadata = {
-  title: "Qurbani Hat",
-  description: "Qurbani Hat - Your one-stop shop for all your qurbani needs",
+  title: 'QurbaniHat - Livestock Marketplace',
+  description: 'Buy and sell quality livestock for Qurbani. Find premium cattle, goats, sheep, and buffalo at the best prices.'
 };
 
 export default function RootLayout({ children }) {
@@ -24,18 +24,18 @@ export default function RootLayout({ children }) {
     <html
       suppressHydrationWarning
       lang="en"
-      className={`${inter.className} h-full antialiased`}
+      className={`${inter.className} h-full antialiased bg-background `}
     >
       <head>
         <ThemeModeScript />
         <link rel="icon" href="/logo.png" />
       </head>
 
-      <body className="min-h-full flex flex-col bg-white dark:bg-black">
+      <body className="min-h-full flex flex-col ">
 
         <NavbarComponent />
         {children}
-        <FooterComponent/>
+        <FooterComponent />
 
 
       </body>

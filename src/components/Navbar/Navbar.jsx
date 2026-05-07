@@ -18,8 +18,8 @@ const NavbarComponent = () => {
         <Navbar fluid rounded>
 
             <NavbarBrand href="/">
-                <Image src="/logo.png" width={40} height={40} alt="Qurbani Hat Logo" className="mr-3 h-6 sm:h-9 w-auto" />
-                <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Qurbani Hat</span>
+                <Image src="/logo.png" width={40} height={40} alt="Qurbani Hat Logo" className="mr-3 w-auto h-6 sm:h-9" />
+                <span className="self-center font-semibold dark:text-white text-xl whitespace-nowrap">Qurbani Hat</span>
             </NavbarBrand>
 
             <div className="flex md:order-2">
@@ -32,7 +32,7 @@ const NavbarComponent = () => {
                 >
                     <DropdownHeader>
                         <span className="block text-sm">Bonnie Green</span>
-                        <span className="block truncate text-sm font-medium">name@flowbite.com</span>
+                        <span className="block font-medium text-sm truncate">name@flowbite.com</span>
                     </DropdownHeader>
                     <DropdownItem>Dashboard</DropdownItem>
                     <DropdownItem>Settings</DropdownItem>
@@ -48,7 +48,7 @@ const NavbarComponent = () => {
                     Home
                 </NavbarLink>
                 <NavbarLink href="all-animals">All Animals</NavbarLink>
-                <NavbarLink href="theme-changer">Theme Changer</NavbarLink>
+                {/* <NavbarLink href="theme-changer">Theme Changer</NavbarLink> */}
             </NavbarCollapse>
         </Navbar>
     );
