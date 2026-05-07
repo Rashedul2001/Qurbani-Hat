@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeModeScript } from "flowbite-react";
 import NavbarComponent from "@/components/Navbar/Navbar";
 import { FooterComponent } from "@/components/Footer/Footer";
+import 'animate.css'
 
 
 const inter = Inter({
