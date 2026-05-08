@@ -6,9 +6,8 @@ import { BiHeart } from 'react-icons/bi';
 import { FiShoppingCart } from 'react-icons/fi';
 
 const categoryColor = {
-    'Premium': 'bg-yellow-100 text-yellow-800',
-    'Standard': 'bg-blue-100 text-blue-800',
-    'Budget': 'bg-green-100 text-green-800',
+    'Large Animal': 'bg-green-100 text-green-800',
+    'Small Animal': 'bg-blue-100 text-blue-800',
 };
 
 const typeEmoji = {
@@ -25,9 +24,9 @@ const AnimalCard = ({ animal }) => {
                 <Image
                     src={animal.image}
                     alt={animal.name}
-                    className="w-full h-full object-contain hover:scale-105 transition"
+                    className="w-full h-full object-cover hover:scale-105 transition"
                     width={200}
-                    height={200}
+                    height={100}
                 />
                 <Badge className={`absolute top-3 right-3 ${categoryColor[animal.category]}`}>
                     {animal.category}
