@@ -1,57 +1,132 @@
+'use client'
 
-import {
-    Avatar,
-    Dropdown,
-    DropdownDivider,
-    DropdownHeader,
-    DropdownItem,
-    Navbar,
-    NavbarBrand,
-    NavbarCollapse,
-    NavbarLink,
-    NavbarToggle,
-} from "flowbite-react";
+import { Button } from "flowbite-react";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { BiMenu, BiX } from "react-icons/bi";
 
-const NavbarComponent = () => {
+
+const Navbar = () => {
+    const pathName = usePathname();
+
+    const isActive = (path) => pathName === path;
+    const [isOpen, setIsOpen] = useState(false);
+
+
     return (
-        <Navbar fluid rounded>
+       <nav className="top-0 z-50 sticky bg-background backdrop-blur border-b w-full">
+            <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+                <div className="flex justify-between items-center h-16">
+                    {/* Logo */}
+                    <Link href="/" className="flex items-center gap-2">
+                        <Image src="/logo.png" width={40} height={40} alt="Qurbani Hat Logo" className="mr-3 w-auto h-6 sm:h-9" />
+                        <span className="hidden sm:inline font-bold text-xl">QurbaniHat</span>
+                    </Link>
+                    {/* Desktop Navigation */}
+                    <div className="hidden md:flex items-center gap-1">
+                        <Link href="/" className={`px-3 py-2 text-sm font-medium rounded-md transition ${isActive('/')
+                            ? 'bg-accent text-accent-foreground'
+                            : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'
+                            }`}>
+                            Home
+                        </Link>
+                        <Link href="/animals" className={`px-3 py-2 text-sm font-medium rounded-md transition ${isActive('/animals')
+                            ? 'bg-accent text-accent-foreground'
+                            : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'
+                            }`}>
+                            Animals
+                        </Link>
+                        {/* {session?.user && (
+                            <Link href="/profile" className={`px-3 py-2 text-sm font-medium rounded-md transition ${isActive('/profile')
+                                    ? 'bg-accent text-accent-foreground'
+                                    : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'
+                                }`}>
+                                Profile
+                            </Link>
+                        )} */}
+                    </div>
 
-            <NavbarBrand href="/">
-                <Image src="/logo.png" width={40} height={40} alt="Qurbani Hat Logo" className="mr-3 w-auto h-6 sm:h-9" />
-                <span className="self-center font-semibold dark:text-white text-xl whitespace-nowrap">Qurbani Hat</span>
-            </NavbarBrand>
+                    {/* Auth Buttons */}
+                    <div className="flex items-center gap-2">
+                        {/* {session?.user ? (
+                            <>
+                                <span className="hidden sm:inline text-muted-foreground text-sm">
+                                    {session.user.email}
+                                </span>
+                                <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={handleLogout}
+                                    className="flex items-center gap-2"
+                                >
+                                    <LogOut className="w-4 h-4" />
+                                    <span className="hidden sm:inline">Logout</span>
+                                </Button>
+                            </>
+                        ) : (
+                            <>
+                                <Link href="/login">
+                                    <Button variant="ghost" size="sm">
+                                        Login
+                                    </Button>
+                                </Link>
+                                <Link href="/register">
+                                    <Button size="sm" className="bg-green-600 hover:bg-green-700">
+                                        Register
+                                    </Button>
+                                </Link>
+                            </>
+                        )} */}
 
-            <div className="flex md:order-2">
-                <Dropdown
-                    arrowIcon={false}
-                    inline
-                    label={
-                        <Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded />
-                    }
-                >
-                    <DropdownHeader>
-                        <span className="block text-sm">Bonnie Green</span>
-                        <span className="block font-medium text-sm truncate">name@flowbite.com</span>
-                    </DropdownHeader>
-                    <DropdownItem>Dashboard</DropdownItem>
-                    <DropdownItem>Settings</DropdownItem>
-                    <DropdownItem>Earnings</DropdownItem>
-                    <DropdownDivider />
-                    <DropdownItem>Log out</DropdownItem>
-                </Dropdown>
-                <NavbarToggle />
+                        {/* replace this later */}
+                        <Link href="/login">
+                            <Button  outline color="green" size="sm">
+                                Login
+                            </Button>
+                        </Link>
+                        <Link href="/register">
+                            <Button size="sm" className="bg-green-600 hover:bg-green-700">
+                                Register
+                            </Button>
+                        </Link>
+
+
+                        {/* Mobile Menu Button */}
+                        <button
+                            className="md:hidden p-2"
+                            onClick={() => setIsOpen(!isOpen)}
+                        >
+                            {isOpen ? (
+                                <BiX className="w-5 h-5" />
+                            ) : (
+                                <BiMenu className="w-5 h-5" />
+                            )}
+                        </button>
+                    </div>
+                </div>
+
+                {/* Mobile Navigation */}
+                {isOpen && (
+                    <div className="md:hidden space-y-2 pb-4">
+                        <Link href="/" className="block hover:bg-accent px-3 py-2 rounded-md font-medium text-sm">
+                            Home
+                        </Link>
+                        <Link href="/animals" className="block hover:bg-accent px-3 py-2 rounded-md font-medium text-sm">
+                            Animals
+                        </Link>
+                        {/* {session?.user && ( */}
+                            <Link href="/profile" className="block hover:bg-accent px-3 py-2 rounded-md font-medium text-sm">
+                                Profile
+                            </Link>
+                        {/* )} */}
+                    </div>
+                )}
             </div>
+        </nav>
 
-            <NavbarCollapse>
-                <NavbarLink href="/" active>
-                    Home
-                </NavbarLink>
-                <NavbarLink href="all-animals">All Animals</NavbarLink>
-                {/* <NavbarLink href="theme-changer">Theme Changer</NavbarLink> */}
-            </NavbarCollapse>
-        </Navbar>
     );
 }
 
-export default NavbarComponent;
+export default Navbar;

@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeModeScript } from "flowbite-react";
-import NavbarComponent from "@/components/shared/Navbar";
+import Navbar from "@/components/shared/Navbar";
 import { FooterComponent } from "@/components/shared/Footer";
 import 'animate.css';
 // import { ThemeModeScript } from "flowbite-react";
@@ -34,7 +34,7 @@ export default function RootLayout({ children }) {
 
       <body className="min-h-full flex flex-col ">
 
-        <NavbarComponent />
+        <Navbar />
         {children}
         <FooterComponent />
 
