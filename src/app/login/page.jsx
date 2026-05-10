@@ -1,5 +1,5 @@
 'use client';
-// later implement React Hook Form
+//TODO: later implement React Hook Form
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -8,6 +8,9 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
 import Image from 'next/image';
+import { Spinner } from '@/components/ui/spinner';
+import { authClient } from '@/lib/auth-client';
+import { toast } from 'react-toastify';
 
 const LoginPage = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -17,7 +20,39 @@ const LoginPage = () => {
     });
     const handleEmailLogin = async (e) => {
         e.preventDefault();
-        setIsLoading(true);
+        const { data, error } = await authClient.signIn.email({
+            /**
+             * The user email
+             */
+            email: formData.email,
+            /**
+             * The user password
+             */
+            password: formData.password,
+            /**
+             * A URL to redirect to after the user verifies their email (optional)
+             */
+            callbackURL: "/",
+            /**
+             * remember the user session after the browser is closed. 
+             * @default true
+             */
+            rememberMe: false
+        }, {
+            onRequest: (ctx) => {
+                setIsLoading(true);
+            },
+            onSuccess: (ctx) => {
+                toast.success('You Have Logged in successfully');
+                setIsLoading(false);
+                window.location.href = '/';
+            },
+            onError: (ctx) => {
+                // TODO: make the error look better
+                toast.error(ctx.error.message);
+                setIsLoading(false);
+            },
+        })
     };
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -34,7 +69,7 @@ const LoginPage = () => {
                 <Card className="space-y-6 p-8">
                     <div className="text-center">
                         <div className="flex justify-center items-center bg-linear-to-br from-green-600 to-green-700 mx-auto mb-4 rounded-lg w-12 h-12">
-                        <Image src="/logo.png" width={40} height={40} alt="Qurbani Hat Logo" className="w-auto h-6 sm:h-9" />
+                            <Image src="/logo.png" width={40} height={40} alt="Qurbani Hat Logo" className="w-auto h-6 sm:h-9" />
                         </div>
                         <h1 className="font-bold text-2xl">Welcome Back</h1>
                         <p className="mt-2 text-muted-foreground text-sm">
@@ -74,7 +109,7 @@ const LoginPage = () => {
                             className="bg-green-600 hover:bg-green-700 w-full h-11"
                             disabled={isLoading}
                         >
-                            {isLoading ? 'Signing in...' : 'Sign In'}
+                            {isLoading ? (<span className='flex items-center gap-2'> Signing in <Spinner data-icon="inline-start" /></span>) : 'Sign In'}
                         </Button>
                     </form>
 

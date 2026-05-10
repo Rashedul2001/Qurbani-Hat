@@ -1,8 +1,9 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/shared/Navbar";
-import { Footer} from "@/components/shared/Footer";
+import { Footer } from "@/components/shared/Footer";
 import 'animate.css';
+import { ToastContainer } from "react-toastify";
 
 
 const inter = Inter({
@@ -30,10 +31,10 @@ export default function RootLayout({ children }) {
       </head>
 
       <body className="min-h-full flex flex-col ">
-
+        <ToastContainer />
         <Navbar />
         {children}
-        <Footer/>
+        <Footer />
 
 
       </body>

@@ -7,6 +7,10 @@ import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import Link from 'next/link';
 import Image from 'next/image';
+import { authClient } from '@/lib/auth-client';
+import { toast } from 'react-toastify';
+import { Spinner } from '@/components/ui/spinner';
+
 
 
 const RegisterPage = () => {
@@ -24,14 +28,41 @@ const RegisterPage = () => {
             [name]: value
         }));
     };
-    const handleEmailRegister = (e) => {
+    const handleEmailRegister = async (e) => {
         e.preventDefault();
-        setIsLoading(true);
-        // Simulate API call
-        setTimeout(() => {
-            setIsLoading(false);
-        }, 2000);
+        if (formData.password !== formData.confirmPassword) {
+            toast.error('Passwords do not match');
+            return;
+        }
+
+        if (formData.password.length < 8) {
+            toast.error('Password must be at least 8 characters');
+            return;
+        }
+
+        const { data, error } = await authClient.signUp.email({
+            email: formData.email,
+            password: formData.password,
+            name: formData.name,
+            // image: formData.image,
+            callbackURL: "/"
+        }, {
+            onRequest: (ctx) => {
+                setIsLoading(true);
+            },
+            onSuccess: (ctx) => {
+                toast.success('Account created successfully');
+                setIsLoading(false);
+                window.location.href='/';
+            },
+            onError: (ctx) => {
+                // TODO: make the error look better
+                toast.error(ctx.error.message);
+                setIsLoading(false);
+            },
+        });
     };
+
     const handleGoogleSignup = () => {
         setIsLoading(true);
         // Simulate API call
@@ -40,14 +71,16 @@ const RegisterPage = () => {
         }, 2000);
     };
 
+
+
     return (
         <main className="flex justify-center items-center bg-linear-to-br from-green-50 to-background px-4 py-12 min-h-screen">
             <div className="w-full max-w-md animate__animated animate__fadeInUp">
                 <Card className="space-y-6 p-8">
-                    
+
                     <div className="text-center">
                         <div className="flex justify-center items-center bg-linear-to-br from-green-600 to-green-700 mx-auto mb-4 rounded-lg w-12 h-12">
-                        <Image src="/logo.png" width={40} height={40} alt="Qurbani Hat Logo" className="w-auto h-6 sm:h-9" />
+                            <Image src="/logo.png" width={40} height={40} alt="Qurbani Hat Logo" className="w-auto h-6 sm:h-9" />
                         </div>
                         <h1 className="font-bold text-2xl">Create Account</h1>
                         <p className="mt-2 text-muted-foreground text-sm">
@@ -116,11 +149,10 @@ const RegisterPage = () => {
                             className="bg-green-600 hover:bg-green-700 w-full h-11"
                             disabled={isLoading}
                         >
-                            {isLoading ? 'Creating account...' : 'Create Account'}
+                            {isLoading ? (<span className='flex items-center gap-2'> Creating account <Spinner data-icon="inline-start" /></span>) : 'Create Account'}
                         </Button>
                     </form>
 
-                    {/* Divider */}
                     <div className="relative">
                         <div className="absolute inset-0 flex items-center">
                             <div className="border-t w-full" />
