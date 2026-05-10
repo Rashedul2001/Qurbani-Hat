@@ -1,7 +1,7 @@
-import { Card } from 'flowbite-react';
 import React from 'react';
+import { Card } from '../ui/card';
 
-const BreadSection = () => {
+const BreedSection = () => {
     return (
         <section className="bg-muted/30 px-4 sm:px-6 lg:px-8 py-16">
             <div className="mx-auto max-w-7xl">
@@ -25,4 +25,4 @@ const BreadSection = () => {
     );
 };
 
-export default BreadSection;
+export default BreedSection;

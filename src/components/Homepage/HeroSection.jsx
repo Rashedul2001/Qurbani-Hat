@@ -1,8 +1,8 @@
 import React from 'react';
-import { Button } from 'flowbite-react';
 import Link from 'next/link';
 import { BsArrowRight } from 'react-icons/bs';
 import Image from 'next/image';
+import { Button } from '../ui/button';
 
 
 const HeroSection = () => {
@@ -24,7 +24,7 @@ const HeroSection = () => {
                                 </Button>
                             </Link>
                             <Link href="/register">
-                                <Button size='lg' outline className="hover:bg-white/10 border-white text-white">
+                                <Button size='lg' variant='outline' className="bg-transparent hover:bg-white/10 border-white text-white">
                                     Get Started
                                 </Button>
                             </Link>

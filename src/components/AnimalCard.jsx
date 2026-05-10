@@ -1,9 +1,11 @@
-import { Badge, Button, Card } from 'flowbite-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { BiHeart } from 'react-icons/bi';
 import { FiShoppingCart } from 'react-icons/fi';
+import { Card } from './ui/card';
+import { Button } from './ui/button';
+import { Badge } from './ui/badge';
 
 const categoryColor = {
     'Large Animal': 'bg-green-100 text-green-800',

@@ -1,7 +1,7 @@
-import { Card } from 'flowbite-react';
 import React from 'react';
 import { BiShield } from 'react-icons/bi';
 import { FiShoppingCart, FiTrendingUp } from 'react-icons/fi';
+import { Card } from '@/components/ui/card';
 
 const FeaturedSection = () => {
     return (

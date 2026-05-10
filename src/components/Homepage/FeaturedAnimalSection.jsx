@@ -1,9 +1,9 @@
 import { getFeaturedAnimal } from '@/lib/api/Animal';
-import { Button } from 'flowbite-react';
 import Link from 'next/link';
 import React from 'react';
 import { BsArrowRight } from 'react-icons/bs';
 import AnimalCard from '../AnimalCard';
+import { Button } from '../ui/button';
 
 const FeaturedAnimalSection = async () => {
     const featuredAnimals = await getFeaturedAnimal();
@@ -14,7 +14,7 @@ const FeaturedAnimalSection = async () => {
                 <div className="flex justify-between items-center mb-12">
                     <h2 className="font-bold text-3xl">Featured Animals</h2>
                     <Link href="/animals">
-                        <Button outline className="flex items-center gap-2">
+                        <Button variant="outline" className="flex items-center gap-2">
                             View All <BsArrowRight className="w-4 h-4" />
                         </Button>
                     </Link>

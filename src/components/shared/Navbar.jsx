@@ -1,11 +1,11 @@
 'use client'
 
-import { Button } from "flowbite-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { BiMenu, BiX } from "react-icons/bi";
+import { Button } from "../ui/button";
 
 
 const Navbar = () => {
@@ -82,7 +82,7 @@ const Navbar = () => {
 
                         {/* replace this later */}
                         <Link href="/login">
-                            <Button  outline color="green" size="sm">
+                            <Button variant="ghost"   size="sm">
                                 Login
                             </Button>
                         </Link>
