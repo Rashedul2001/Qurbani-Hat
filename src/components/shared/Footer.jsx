@@ -13,7 +13,9 @@ export function Footer() {
                     {/* Brand and About */}
                     <div className="space-y-4">
                         <Link href="/" className="flex items-center gap-2">
-                            <Image width={40} height={40} src="/logo.png" alt="Logo" className="w-8 h-8" />
+                            <div className="flex justify-center items-center bg-linear-to-br from-green-600 to-green-700 rounded-lg w-8 h-8">
+                                <Image src="/logo.png" width={40} height={40} alt="Qurbani Hat Logo" className="w-auto h-6" />
+                            </div>
                             <span className="font-bold text-xl">Qurbani Hat</span>
                         </Link>
                         <p className="text-muted-foreground text-sm leading-6">

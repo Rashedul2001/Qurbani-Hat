@@ -16,12 +16,14 @@ const Navbar = () => {
 
 
     return (
-       <nav className="top-0 z-50 sticky bg-background backdrop-blur border-b w-full">
+        <nav className="top-0 z-50 sticky bg-background backdrop-blur border-b w-full">
             <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
                 <div className="flex justify-between items-center h-16">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2">
-                        <Image src="/logo.png" width={40} height={40} alt="Qurbani Hat Logo" className="mr-3 w-auto h-6 sm:h-9" />
+                        <div className="flex justify-center items-center bg-linear-to-br from-green-600 to-green-700 rounded-lg w-8 h-8">
+                            <Image src="/logo.png" width={40} height={40} alt="Qurbani Hat Logo" className="w-auto h-6" />
+                        </div>
                         <span className="hidden sm:inline font-bold text-xl">QurbaniHat</span>
                     </Link>
                     {/* Desktop Navigation */}
@@ -82,7 +84,7 @@ const Navbar = () => {
 
                         {/* replace this later */}
                         <Link href="/login">
-                            <Button variant="ghost"   size="sm">
+                            <Button variant="ghost" size="sm">
                                 Login
                             </Button>
                         </Link>
@@ -117,9 +119,9 @@ const Navbar = () => {
                             Animals
                         </Link>
                         {/* {session?.user && ( */}
-                            <Link href="/profile" className="block hover:bg-accent px-3 py-2 rounded-md font-medium text-sm">
-                                Profile
-                            </Link>
+                        <Link href="/profile" className="block hover:bg-accent px-3 py-2 rounded-md font-medium text-sm">
+                            Profile
+                        </Link>
                         {/* )} */}
                     </div>
                 )}
