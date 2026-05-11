@@ -1,4 +1,4 @@
-import { getFeaturedAnimal } from '@/lib/api/Animal';
+import { getFeaturedAnimal } from '@/lib/services/JsonAPI';
 import Link from 'next/link';
 import React from 'react';
 import { BsArrowRight } from 'react-icons/bs';
