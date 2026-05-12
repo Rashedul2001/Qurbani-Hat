@@ -68,7 +68,7 @@ const AllAnimalsPage = async ({ searchParams }) => {
                     </p>
                 </div>
 
-                <MainPage filteredAnimals={filteredAnimals} />
+                <MainPage filteredAnimals={filteredAnimals} Params={params} />
 
             </div>
 

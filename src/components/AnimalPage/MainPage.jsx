@@ -11,23 +11,24 @@ import { Input } from '../ui/input';
 import AnimalCard from '../AnimalCard';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '../ui/select';
 
-const MainPage = ({ filteredAnimals }) => {
-    const allParams = useParams();
-    const { animalType, priceRange, searchTerm, sortBy } = allParams;
+const MainPage = ({ filteredAnimals, Params }) => {
+    const router = useRouter();
+    const pathName = usePathname();
+    const { animalType, priceRange, searchTerm, sortBy } = Params;
+
+
     const [currentAnimalType, setCurrentAnimalType] = useState(animalType ?? "All");
     const [currentPriceRange, setCurrentPriceRange] = useState((priceRange && priceRange.split('-').map(Number)) || [0, 600000]);
     const [currentSearchTerm, setCurrentSearchTerm] = useState((searchTerm ?? ""));
     const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(currentSearchTerm);
     const [debouncedPriceRange, setDebouncedPriceRange] = useState(currentPriceRange);
     const [currentSortBy, setCurrentSortBy] = useState(sortBy ?? "");
-
-
-
     const [showFilters, setShowFilters] = useState(false);
+
+
+
     const allAnimalType = ["All", "Cow", "Goat", "Sheep", "Dumba", "Bull"]
 
-    const router = useRouter();
-    const pathName = usePathname();
 
     useEffect(() => {
         const t = setTimeout(() => {
@@ -47,7 +48,7 @@ const MainPage = ({ filteredAnimals }) => {
     }, [currentPriceRange]);
 
     useEffect(() => {
-        const params = new URLSearchParams(allParams);
+        const params = new URLSearchParams(Params);
         if (currentAnimalType !== "All") {
             params.set("animalType", currentAnimalType);
         } else {
