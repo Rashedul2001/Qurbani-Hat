@@ -1,4 +1,4 @@
-import Filter from '@/components/AnimalPage/Filter';
+import MainPage from '@/components/AnimalPage/MainPage';
 import { getAllAnimal } from '@/lib/services/JsonAPI';
 
 export const metadata = {
@@ -66,19 +66,12 @@ const AllAnimalsPage = async ({ searchParams }) => {
                         Found {filteredAnimals.length} {filteredAnimals.length === 1 ? 'Animal' : 'Animals'} {Object.keys(params).length > 0 && `out of ${allAnimals.length} Animals`}
                     </p>
                 </div>
-                <div className="gap-6 grid lg:grid-cols-4">
-                    <Filter animalType={animalType} priceRange={priceRange} />
 
-
-
-                </div>
-
-
-
-
+                <MainPage animalType={animalType} priceRange={priceRange} />
 
             </div>
-        </main>
+
+        </main >
 
     );
 };
