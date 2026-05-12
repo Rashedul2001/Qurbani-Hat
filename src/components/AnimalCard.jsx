@@ -6,6 +6,7 @@ import { FiShoppingCart } from 'react-icons/fi';
 import { Card } from './ui/card';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
+import { CiLocationOn } from 'react-icons/ci';
 
 const categoryColor = {
     'Large Animal': 'bg-green-100 text-green-800',
@@ -17,18 +18,20 @@ const typeEmoji = {
     'Goat': '🐐',
     'Sheep': '🐑',
     'Buffalo': '🐃',
+    'Dumba': '🐏',
+    'Bull': '🐂'
 };
 
 const AnimalCard = ({ animal }) => {
     return (
         <Card className="hover:shadow-lg overflow-hidden transition animate__animated animate__fadeInUp">
-            <div className="relative bg-muted h-48 overflow-hidden">
+            <div className="relative bg-muted h-48">
                 <Image
                     src={animal.image}
                     alt={animal.name}
-                    className="w-full h-full object-cover hover:scale-105 transition"
+                    className="mx-auto rounded-xl w-3/4 h-full object-cover hover:scale-110 transition"
                     width={200}
-                    height={100}
+                    height={200}
                 />
                 <Badge className={`absolute top-3 right-3 ${categoryColor[animal.category]}`}>
                     {animal.category}
@@ -66,11 +69,11 @@ const AnimalCard = ({ animal }) => {
                 </div>
 
                 <div>
-                    <p className="mb-2 text-muted-foreground text-xs">{animal.location}</p>
+                    <p className="flex items-center gap-1 mb-2 text-muted-foreground text-xs"><CiLocationOn />{animal.location}</p>
                     <p className="text-muted-foreground text-sm line-clamp-2">{animal.description}</p>
                 </div>
 
-                <div className="flex justify-between items-center pt-2">
+                <div className="flex justify-between items-baseline-last pt-2">
                     <div>
                         <p className="text-muted-foreground text-xs">Price</p>
                         <p className="font-bold text-green-600 text-2xl">
