@@ -29,7 +29,6 @@ const AllAnimalsPage = async ({ searchParams }) => {
     }
     if (priceRange) {
         const [minPrice, maxPrice] = priceRange.split('-').map(Number);
-        console.log(minPrice, maxPrice);
 
         filteredAnimals = filteredAnimals.filter(
             (animal) =>
@@ -45,6 +44,8 @@ const AllAnimalsPage = async ({ searchParams }) => {
                     return b.price - a.price;
                 case 'name-asc':
                     return a.name.localeCompare(b.name);
+                case 'name-desc':
+                    return b.name.localeCompare(a.name);
                 case 'newest':
                     return b.id - a.id;
                 default:
@@ -63,11 +64,11 @@ const AllAnimalsPage = async ({ searchParams }) => {
                     <h1 className="mb-2 font-bold text-4xl">Browse Animals</h1>
                     <p className="text-muted-foreground">
 
-                        Found {filteredAnimals.length} {filteredAnimals.length === 1 ? 'Animal' : 'Animals'} {Object.keys(params).length > 0 && `out of ${allAnimals.length} Animals`}
+                        Found {filteredAnimals.length} {filteredAnimals.length <= 1 ? 'Animal' : 'Animals'} {Object.keys(params).length > 0 && `out of ${allAnimals.length} Animals`}
                     </p>
                 </div>
 
-                <MainPage animalType={animalType} priceRange={priceRange} />
+                <MainPage filteredAnimals={filteredAnimals} />
 
             </div>
 

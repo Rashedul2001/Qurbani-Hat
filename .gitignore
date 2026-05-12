@@ -41,4 +41,5 @@ yarn-error.log*
 next-env.d.ts
 Todo.md
 .vercel
-src/app/test/
+src/app/_test
+
