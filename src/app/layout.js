@@ -4,7 +4,7 @@ import Navbar from "@/components/shared/Navbar";
 import { Footer } from "@/components/shared/Footer";
 import 'animate.css';
 import { ToastContainer } from "react-toastify";
-
+import { Analytics } from "@vercel/analytics/next"
 
 const inter = Inter({
   weight: ["400", "600", "700", "900"],
@@ -35,8 +35,8 @@ export default function RootLayout({ children }) {
         <Navbar />
         {children}
         <Footer />
-
-
+        {/* vercel Analytics  */}
+        <Analytics />
       </body>
 
     </html>

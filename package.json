@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@better-auth/mongo-adapter": "^1.6.10",
+    "@vercel/analytics": "^2.0.1",
     "animate.css": "^4.1.1",
     "better-auth": "^1.6.10",
     "class-variance-authority": "^0.7.1",
