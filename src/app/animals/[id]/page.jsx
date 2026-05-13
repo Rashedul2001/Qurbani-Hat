@@ -1,3 +1,4 @@
+import Booking from '@/components/AnimalPage/Booking';
 import BackButton from '@/components/BackButton';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -158,34 +159,37 @@ const AnimalDetailPage = async ({ params }) => {
                             </div>
                         </Card>
                     </div>
-                    {relatedAnimals.length > 0 && (
-                        <Card className="p-4">
-                            <h3 className="mb-4 font-semibold">Similar Animals</h3>
-                            <div className="space-y-3">
-                                {relatedAnimals.map((related) => (
-                                    <Link
-                                        key={related.id}
-                                        href={`/animals/${related.id}`}
-                                        className="flex gap-3 hover:bg-muted p-2 rounded transition"
-                                    >
-                                        <Image
-                                            src={related.image}
-                                            alt={related.name}
-                                            width={100}
-                                            height={100}
-                                            className="rounded w-16 h-16 object-cover"
-                                        />
-                                        <div className="flex-1 text-sm">
-                                            <p className="font-semibold">{related.name}</p>
-                                            <p className="text-muted-foreground">৳{related.price.toLocaleString()}</p>
-                                        </div>
-                                    </Link>
-                                ))}
-                            </div>
-                        </Card>
-                    )}
-                </div>
+                    <div className="space-y-6">
+                        <Booking />
 
+                        {relatedAnimals.length > 0 && (
+                            <Card className="p-4">
+                                <h3 className="mb-4 font-semibold">Similar Animals</h3>
+                                <div className="space-y-3">
+                                    {relatedAnimals.map((related) => (
+                                        <Link
+                                            key={related.id}
+                                            href={`/animals/${related.id}`}
+                                            className="flex gap-3 hover:bg-muted p-2 rounded transition"
+                                        >
+                                            <Image
+                                                src={related.image}
+                                                alt={related.name}
+                                                width={100}
+                                                height={100}
+                                                className="rounded w-16 h-16 object-cover"
+                                            />
+                                            <div className="flex-1 text-sm">
+                                                <p className="font-semibold">{related.name}</p>
+                                                <p className="text-muted-foreground">৳{related.price.toLocaleString()}</p>
+                                            </div>
+                                        </Link>
+                                    ))}
+                                </div>
+                            </Card>
+                        )}
+                    </div>
+                </div>
             </div>
 
         </main >

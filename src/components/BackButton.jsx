@@ -10,7 +10,7 @@ const BackButton = () => {
         <Button
             variant="ghost"
             onClick={() => router.back()}
-            className="flex items-center gap-2 mb-6 text-blue-600 animate__animated animate__fadeInLeft"
+            className="flex items-center gap-2 mb-6 text-green-800 animate__animated animate__fadeInLeft"
         >
             <ArrowLeft className="w-4 h-4" />
             Back
