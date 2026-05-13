@@ -21,22 +21,9 @@ const LoginPage = () => {
     const handleEmailLogin = async (e) => {
         e.preventDefault();
         const { data, error } = await authClient.signIn.email({
-            /**
-             * The user email
-             */
             email: formData.email,
-            /**
-             * The user password
-             */
             password: formData.password,
-            /**
-             * A URL to redirect to after the user verifies their email (optional)
-             */
             callbackURL: "/",
-            /**
-             * remember the user session after the browser is closed. 
-             * @default true
-             */
             rememberMe: false
         }, {
             onRequest: (ctx) => {
@@ -45,7 +32,7 @@ const LoginPage = () => {
             onSuccess: (ctx) => {
                 toast.success('You Have Logged in successfully');
                 setIsLoading(false);
-                window.location.href = '/';
+                router.push('/');
             },
             onError: (ctx) => {
                 // TODO: make the error look better
@@ -65,7 +52,7 @@ const LoginPage = () => {
 
     return (
         <main className="flex justify-center items-center bg-linear-to-br from-green-50 to-background px-4 py-12 min-h-screen">
-            <div className="w-full max-w-md animate__animated animate__fadeInUp">
+            <div className="w-full max-w-md animate__animated animate__backInDown">
                 <Card className="space-y-6 p-8">
                     <div className="text-center">
                         <div className="flex justify-center items-center bg-linear-to-br from-green-600 to-green-700 mx-auto mb-4 rounded-lg w-12 h-12">

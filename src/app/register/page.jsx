@@ -10,10 +10,12 @@ import Image from 'next/image';
 import { authClient } from '@/lib/auth-client';
 import { toast } from 'react-toastify';
 import { Spinner } from '@/components/ui/spinner';
+import { useRouter } from 'next/navigation';
 
 
 
 const RegisterPage = () => {
+    const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
@@ -53,7 +55,7 @@ const RegisterPage = () => {
             onSuccess: (ctx) => {
                 toast.success('Account created successfully');
                 setIsLoading(false);
-                window.location.href='/';
+                router.push('/');
             },
             onError: (ctx) => {
                 // TODO: make the error look better
@@ -75,7 +77,7 @@ const RegisterPage = () => {
 
     return (
         <main className="flex justify-center items-center bg-linear-to-br from-green-50 to-background px-4 py-12 min-h-screen">
-            <div className="w-full max-w-md animate__animated animate__fadeInUp">
+            <div className="w-full max-w-md animate__animated animate__backInDown">
                 <Card className="space-y-6 p-8">
 
                     <div className="text-center">
