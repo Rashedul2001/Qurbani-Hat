@@ -24,7 +24,7 @@ const LoginPage = () => {
     });
     const handleEmailLogin = async (e) => {
         e.preventDefault();
-        const { data, error } = await authClient.signIn.email({
+        await authClient.signIn.email({
             email: formData.email,
             password: formData.password,
             // callbackURL: "/", // this was not allowing to show the toast message on successful login
@@ -41,7 +41,7 @@ const LoginPage = () => {
             },
             onError: (ctx) => {
                 // TODO: make the error look better
-                toast.error(error);
+                toast.error(ctx.error.message);
                 setIsLoading(false);
             },
         })

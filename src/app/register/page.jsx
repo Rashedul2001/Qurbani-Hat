@@ -12,6 +12,7 @@ import { toast } from 'react-toastify';
 import { Spinner } from '@/components/ui/spinner';
 import { useRouter } from 'next/navigation';
 import { BsGoogle } from 'react-icons/bs';
+import { socialSignIn } from '@/lib/services/SocialSignIn';
 
 
 
@@ -44,7 +45,7 @@ const RegisterPage = () => {
             return;
         }
 
-        const { data, error } = await authClient.signUp.email({
+        await authClient.signUp.email({
             email: formData.email,
             password: formData.password,
             name: formData.name,
