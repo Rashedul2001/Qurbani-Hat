@@ -13,6 +13,8 @@ import { authClient } from '@/lib/auth-client';
 import { toast } from 'react-toastify';
 
 const LoginPage = () => {
+    const router = useRouter();
+
     const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
         email: '',
@@ -23,7 +25,7 @@ const LoginPage = () => {
         const { data, error } = await authClient.signIn.email({
             email: formData.email,
             password: formData.password,
-            callbackURL: "/",
+            // callbackURL: "/", // this was not allowing to show the toast message on successful login
             rememberMe: false
         }, {
             onRequest: (ctx) => {
@@ -33,6 +35,7 @@ const LoginPage = () => {
                 toast.success('You Have Logged in successfully');
                 setIsLoading(false);
                 router.push('/');
+                router.refresh();
             },
             onError: (ctx) => {
                 // TODO: make the error look better

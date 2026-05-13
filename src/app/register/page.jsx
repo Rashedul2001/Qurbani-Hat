@@ -20,8 +20,9 @@ const RegisterPage = () => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
+        image: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
     });
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -46,20 +47,21 @@ const RegisterPage = () => {
             email: formData.email,
             password: formData.password,
             name: formData.name,
-            // image: formData.image,
+            image: formData.image,
             callbackURL: "/"
         }, {
             onRequest: (ctx) => {
                 setIsLoading(true);
             },
             onSuccess: (ctx) => {
-                toast.success('Account created successfully');
+                toast.success(<div><p>Account created successfully</p><p>Please login to continue</p></div>);
                 setIsLoading(false);
-                router.push('/');
+                router.push('/login');
             },
             onError: (ctx) => {
                 // TODO: make the error look better
                 toast.error(ctx.error.message);
+                console.log("error:", ctx.error);
                 setIsLoading(false);
             },
         });
@@ -71,6 +73,7 @@ const RegisterPage = () => {
         setTimeout(() => {
             setIsLoading(false);
         }, 2000);
+        setIsLoading(false);
     };
 
 
@@ -113,6 +116,17 @@ const RegisterPage = () => {
                                 value={formData.email}
                                 onChange={handleInputChange}
                                 required
+                                disabled={isLoading}
+                            />
+                        </div>
+                        <div>
+                            <label className="block mb-2 font-semibold text-sm">Image Link</label>
+                            <Input
+                                type="text"
+                                name="image"
+                                placeholder="https://example.com/image.jpg"
+                                value={formData.image}
+                                onChange={handleInputChange}
                                 disabled={isLoading}
                             />
                         </div>

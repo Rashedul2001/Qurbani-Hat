@@ -12,5 +12,9 @@ export const auth = betterAuth({
     }),
     emailAndPassword: {
         enabled: true,
+        autoSignIn: false,
     },
+    //nextCookies for when I will use the server component to register login
+    // install the nextCookies first
+    // plugins: [nextCookies()] // make sure this is the last plugin in the array
 });
