@@ -1,3 +1,5 @@
+import { authClient } from "../auth-client";
+
 export const socialSignIn = async (provider) => {
     const { data, error } = await authClient.signIn.social({
         provider: provider,
