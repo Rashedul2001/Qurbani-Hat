@@ -10,6 +10,19 @@ import { authClient } from "@/lib/auth-client";
 import { LogOut } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import {
+    Avatar,
+    AvatarFallback,
+    AvatarImage,
+} from "@/components/ui/avatar"
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuGroup,
+    DropdownMenuItem,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 
 const Navbar = () => {
@@ -30,6 +43,21 @@ const Navbar = () => {
             },
         });
     }
+    const Links = [
+        <Link key={1} href="/" className={`px-3 py-2 text-sm font-medium rounded-md transition ${isActive('/')
+            ? 'bg-green-600 text-white'
+            : 'text-muted-foreground hover:bg-green-100 hover:text-accent-foreground'
+            }`}>
+            Home
+        </Link>,
+        <Link key={2} href="/animals" className={`px-3 py-2 text-sm font-medium rounded-md transition ${isActive('/animals')
+            ? 'bg-green-600 text-white'
+            : 'text-muted-foreground hover:bg-green-100 hover:text-accent-foreground'
+            }`}>
+            All Animals
+        </Link>
+
+    ];
 
     return (
         <nav className="top-0 z-50 sticky bg-background backdrop-blur border-b w-full">
@@ -42,37 +70,39 @@ const Navbar = () => {
                         <span className="hidden sm:inline font-bold text-xl">QurbaniHat</span>
                     </Link>
                     <div className="hidden md:flex items-center gap-1">
-                        <Link href="/" className={`px-3 py-2 text-sm font-medium rounded-md transition ${isActive('/')
-                            ? 'bg-accent text-accent-foreground'
-                            : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'
-                            }`}>
-                            Home
-                        </Link>
-                        <Link href="/animals" className={`px-3 py-2 text-sm font-medium rounded-md transition ${isActive('/animals')
-                            ? 'bg-accent text-accent-foreground'
-                            : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'
-                            }`}>
-                            Animals
-                        </Link>
-                        {/* TODO: move this inside a user logo */}
-                        {session?.user && (
-                            <Link href="/profile" className={`px-3 py-2 text-sm font-medium rounded-md transition ${isActive('/profile')
-                                ? 'bg-accent text-accent-foreground'
-                                : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'
-                                }`}>
-                                Profile
-                            </Link>
-                        )}
+                        {Links}
                     </div>
 
                     <div className="flex items-center gap-2">
                         {session?.user ? (
                             <>
-                                <span className="hidden sm:inline text-muted-foreground text-sm">
-                                    {session.user.email}
-                                </span>
+                                <DropdownMenu>
+                                    <DropdownMenuTrigger asChild>
+                                        <Button variant="ghost" size="icon" className="rounded-full">
+                                            <Avatar>
+                                                <AvatarImage src={session.user.image} alt={session.user.name} />
+                                                <AvatarFallback className={'bg-green-300 text-green-800'}>{session.user.email.charAt(0).toUpperCase()}</AvatarFallback>
+                                            </Avatar>
+                                        </Button>
+                                    </DropdownMenuTrigger>
+                                    <DropdownMenuContent className="w-32">
+                                        <DropdownMenuGroup>
+                                            <Link href={'/profile'}>
+                                                <DropdownMenuItem>Profile</DropdownMenuItem>
+                                            </Link>
+                                            <DropdownMenuItem>Billing</DropdownMenuItem>
+                                            <DropdownMenuItem>Settings</DropdownMenuItem>
+                                        </DropdownMenuGroup>
+                                        <DropdownMenuSeparator />
+                                        <DropdownMenuGroup>
+                                            <DropdownMenuItem variant="destructive" onClick={handleLogout}>
+                                                Log out
+                                            </DropdownMenuItem>
+                                        </DropdownMenuGroup>
+                                    </DropdownMenuContent>
+                                </DropdownMenu>
                                 <Button
-                                    variant="ghost"
+                                    variant="destructive"
                                     size="sm"
                                     onClick={handleLogout}
                                     className="flex items-center gap-2"
@@ -84,7 +114,7 @@ const Navbar = () => {
                         ) : (
                             <>
                                 <Link href="/login">
-                                    <Button variant="ghost" size="sm">
+                                    <Button variant="outline" size="sm">
                                         Login
                                     </Button>
                                 </Link>
@@ -110,18 +140,8 @@ const Navbar = () => {
                 </div>
 
                 {isOpen && (
-                    <div className="md:hidden space-y-2 pb-4">
-                        <Link href="/" className="block hover:bg-accent px-3 py-2 rounded-md font-medium text-sm">
-                            Home
-                        </Link>
-                        <Link href="/animals" className="block hover:bg-accent px-3 py-2 rounded-md font-medium text-sm">
-                            Animals
-                        </Link>
-                        {session?.user && (
-                            <Link href="/profile" className="block hover:bg-accent px-3 py-2 rounded-md font-medium text-sm">
-                                Profile
-                            </Link>
-                        )}
+                    <div className="md:hidden flex flex-col space-y-2 pb-4">
+                        {Links}
                     </div>
                 )}
             </div>
