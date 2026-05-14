@@ -1,4 +1,5 @@
 'use client'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 // Todo: how can I get the session in server component ??
 
@@ -7,11 +8,13 @@ import { authClient } from '@/lib/auth-client';
 import { Edit, LogOut, Mail, MapPin, Phone } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
+import { FaRegUser } from 'react-icons/fa';
 
 
 
 const ProfilePage = () => {
     const { data: session, isPending } = authClient.useSession();
+
     if (!session) return null; //TODO: set this to do something later
     if (isPending) {
         return (
@@ -39,12 +42,11 @@ const ProfilePage = () => {
             </div>
             <Card className="space-y-8 p-8 animate__animated animate__fadeInUp">
                 <div className="flex justify-between items-start">
-                    <div className="flex items-center gap-4">
-                        <div className="flex justify-center items-center bg-linear-to-br from-green-500 to-green-600 rounded-full w-16 h-16 font-bold text-white text-2xl">
-                            {session.user?.name?.charAt(0).toUpperCase()}
-                        </div>
-                    </div>
-                    <Link href="/profile/update">
+                    <Avatar className={'w-20 h-20'}>
+                        <AvatarImage src={session.user.image} alt={session.user.name} />
+                        <AvatarFallback className={'bg-green-300 text-green-800 text-3xl'}>{session.user.email.charAt(0).toUpperCase()}</AvatarFallback>
+                    </Avatar>
+                    <Link href="/my-profile/update">
                         <Button className="flex items-center gap-2 bg-green-600 hover:bg-green-700">
                             <Edit className="w-4 h-4" />
                             Edit Profile
@@ -55,6 +57,13 @@ const ProfilePage = () => {
                 <div>
                     <h3 className="mb-4 font-semibold text-lg">Contact Information</h3>
                     <div className="space-y-4">
+                        <div className="flex items-center gap-4 bg-muted p-4 rounded-lg">
+                            <FaRegUser className="w-5 h-5 text-green-600" />
+                            <div>
+                                <p className="text-muted-foreground text-sm">Name</p>
+                                <p className="font-semibold">{session.user.name}</p>
+                            </div>
+                        </div>
                         <div className="flex items-center gap-4 bg-muted p-4 rounded-lg">
                             <Mail className="w-5 h-5 text-green-600" />
                             <div>
@@ -89,7 +98,11 @@ const ProfilePage = () => {
                     <h3 className="mb-4 font-semibold text-lg">Account Status</h3>
                     <div className="bg-green-50 p-4 border border-green-200 rounded-lg">
                         <p className="mb-2 text-muted-foreground text-sm">Verification Status</p>
-                        <p className="font-semibold text-green-700">✓ Email Verified</p>
+                        {session.user.emailVerified ? (
+                            <p className="font-semibold text-green-700">✓ Email Verified</p>
+                        ) : (
+                            <p className="font-semibold text-red-700">✗ Email Not Verified</p>
+                        )}
                     </div>
                 </div>
 

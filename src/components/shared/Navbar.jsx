@@ -87,7 +87,7 @@ const Navbar = () => {
                                     </DropdownMenuTrigger>
                                     <DropdownMenuContent className="w-32">
                                         <DropdownMenuGroup>
-                                            <Link href={'/profile'}>
+                                            <Link href={'/my-profile'}>
                                                 <DropdownMenuItem>Profile</DropdownMenuItem>
                                             </Link>
                                             <DropdownMenuItem>Billing</DropdownMenuItem>
