@@ -6,15 +6,21 @@ import { headers } from 'next/headers';
 export async function proxy(request) {
     const session = await auth.api.getSession({
         headers: await headers(),
-    }
-    );
-    if (session) {
-        return NextResponse.next();
-    }
+    });
 
-    return NextResponse.redirect(new URL('/login', request.url))
+    const { pathname } = new URL(request.url);
+
+    if (session && (pathname === '/login' || pathname === '/register')) {
+        return NextResponse.redirect(new URL('/my-profile', request.url));
+    }
+    if (!session && (pathname.startsWith('/my-profile/') || pathname.startsWith('/animals/'))) {
+        return NextResponse.redirect(new URL('/login', request.url));
+    }
+    return NextResponse.next();
+
+
 }
 
 export const config = {
-    matcher: ['/profile/:path*', '/animals/:id'],
+    matcher: ['/my-profile/:path*', '/animals/:id', '/login', '/register'],
 }
