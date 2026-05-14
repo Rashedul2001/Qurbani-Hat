@@ -43,3 +43,6 @@ Todo.md
 .vercel
 src/app/_test
 
+
+.vercel
+.env*.local
