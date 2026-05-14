@@ -4,13 +4,13 @@ import { Card } from '../ui/card';
 import { toast } from 'react-toastify';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
-import { authClient } from '@/lib/auth-client';
+
 
 const Booking = () => {
-    const { data: session } = authClient.useSession();
+
     const [formData, setFormData] = useState({
-        name: session?.user?.name || "",
-        email: session?.user?.email || "",
+        name: "",
+        email: "",
         phone: "",
         address: "",
 
@@ -21,8 +21,8 @@ const Booking = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setFormData({
-            name: session?.user?.name || "",
-            email: session?.user?.email || "",
+            name: "",
+            email: "",
             phone: "",
             address: ""
         });
