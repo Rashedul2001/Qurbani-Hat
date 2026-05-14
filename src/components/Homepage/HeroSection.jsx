@@ -18,7 +18,7 @@ const HeroSection = () => {
                             Buy quality cattle, goats, sheep, and buffalo directly from trusted sellers. Certified healthy animals at competitive prices.
                         </p>
                         <div className="flex gap-4">
-                            <Link href="/all-animals">
+                            <Link href="/animals">
                                 <Button size="lg" className="flex items-center gap-2 bg-white hover:bg-green-100 text-green-700">
                                     Browse Animals <BsArrowRight className="w-4 h-4" />
                                 </Button>

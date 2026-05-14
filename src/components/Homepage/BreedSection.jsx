@@ -5,7 +5,7 @@ const BreedSection = () => {
     return (
         <section className="bg-muted/30 px-4 sm:px-6 lg:px-8 py-16">
             <div className="mx-auto max-w-7xl">
-                <h2 className="mb-12 font-bold text-3xl text-center">Popular Breeds</h2>
+                <h2 className="mb-12 font-bold text-3xl text-center">Top Breeds</h2>
                 <div className="gap-6 grid md:grid-cols-2 lg:grid-cols-4">
                     {[
                         { name: 'Pabna Deshi Bull', description: 'Best for breeding & meat', icon: '🐂' },
