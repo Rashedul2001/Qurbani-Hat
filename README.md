@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# QurbaniHat - Livestock Marketplace
 
-## Getting Started
+A modern web application for buying and selling quality livestock for Qurbani . Browse premium cattle, goats, sheep, and buffalo from trusted sellers with advanced filtering, user authentication, and seamless booking experience.
 
-First, run the development server:
+## Project Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Project Name**: QurbaniHat
+- **Purpose**: A comprehensive livestock marketplace platform that connects buyers and sellers of quality animals for Qurbani
+- **Live URL**: [https://qurbani-hat-rashedul-2001.vercel.app/]
+- **Repository**: [https://github.com/Rashedul2001/Qurbani-Hat]
+- **Status**: Active Development
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Core Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Browse Livestock**: Browse cattle, goats, sheep, and buffalo with detailed information
+- **Advanced Filtering**: Filter animals by type, price range, and location
+- **Smart Sorting**: Sort by price, name, or newest listings
+- **Animal Details**: View comprehensive information about each animal including weight, age, breed, and health status
+- **Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices
 
-## Learn More
+### User Management
 
-To learn more about Next.js, take a look at the following resources:
+- **User Authentication**: Secure email/password and Google OAuth authentication
+- **User Profiles**: Create and manage user profiles with personal information
+- **Profile Updates**: Update name, phone, address, and city
+- **Session Management**: Secure session handling with automatic logout
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Design & UX
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Animations**: Smooth Animate.css animations throughout the app
+- **Modern UI**: Clean, modern interface built with shadcn/ui components
+- **Accessibility**: Semantic HTML and ARIA labels for screen readers
+- **Performance**: Optimized images and lazy loading
+- **Shareable Links**: Each animal has a unique URL that can be shared with others
 
-## Deploy on Vercel
+## ## Tech Stack & Dependencies
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Core Framework
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Next.js 16.2.4** – React framework using the App Router for server-side rendering and optimized routing.
+- **React 19.2.4** – Utilizing the latest React features, including the **React Compiler** for automated performance optimization.
+- **JavaScript (ES6+)** – Developed with modern, clean JavaScript standards.
+
+### UI & Component Libraries
+
+- **shadcn/ui 4.7.0** – High-quality, accessible React components.
+- **Radix UI** – Low-level primitives for accessible UI components (Dialog, Dropdown, etc.).
+- **Lucide React & React Icons** – A comprehensive set of consistent SVG icons.
+- **React Toastify** – Feature-rich notification system for real-time user feedback.
+
+### Styling & Theme
+
+- **Tailwind CSS 4.0** – Utility-first CSS framework for rapid UI development.
+- **@tailwindcss/postcss** – Integration with the PostCSS pipeline for advanced CSS processing.
+- **class-variance-authority** – Efficient management of UI component variants.
+- **clsx & tailwind-merge** – Utilities for clean, conflict-free CSS class management.
+
+### Animations & Motion
+
+- **Animate.css** – Ready-to-use CSS animations.
+- **tw-animate-css** – Tailwind CSS integration for fluid motion effects.
+
+### Authentication & Backend
+
+- **Better Auth 1.4.3** – Modern authentication solution.
+- **MongoDB Adapter (@better-auth/mongo-adapter)** – Specialized adapter for seamless database integration.
+- **Next.js API Routes** – Serverless backend functions for handling marketplace logic.
+
+### Database
+
+- **MongoDB 7.2.0** – Scalable NoSQL database used for livestock data and user profiles.
+
+### Analytics & Monitoring
+
+- **@vercel/analytics** – Performance tracking and traffic insights via Vercel.
